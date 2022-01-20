@@ -11,25 +11,24 @@ class Solution{
     int minJumps(int arr[], int n){
         // Your code here
         int jump =0;
-        int cur =0;
+        int newjump =0;
         int i=0;
         int count =0;
         
-        while(i<n-1)
+        for(i=0;i<n-1;i++)
         {
-            if (i+arr[i]> jump)
-           {
-               jump = i+arr[i];
-           }
-            if(i==cur)
+            if(i+arr[i]>jump)
+            {
+                jump= i+arr[i];
+            }
+            if(i==newjump)
             {
                 count++;
-                cur = jump;
+                newjump = jump;
             }
-            if(arr[i]==0 && i==jump)
-            return -1;
-           i++; 
+            if(arr[i]==0 && i==jump) return -1;
         }
+        
         return count;
     }
     
