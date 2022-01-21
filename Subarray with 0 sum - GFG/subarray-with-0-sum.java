@@ -45,12 +45,12 @@ class Solution{
     {
         //Your code here
         HashMap<Integer, Integer> map = new HashMap<>();
-        int i =-1;
+        int i =0;
         int sum =0;
         map.put(0,1);
-        while(i<n-1)
+        while(i<n)
         {
-            i++;
+            
             sum = sum +arr[i];
             if(map.containsKey(sum))
             {
@@ -60,6 +60,7 @@ class Solution{
             {
                 map.put(sum,1);
             }
+            i++;
         }
         return false;
     }
