@@ -27,7 +27,7 @@ class GfG
                   {
                       int rem =0;
                       int reverse =0;
-                      int arr = a[i];
+                      
                       int num = a[i];
                       while(num!=0)
                       {
@@ -35,7 +35,7 @@ class GfG
                         reverse = reverse *10+rem;
                         num = num/10;
                       }
-                     if(reverse != arr) return 0;
+                     if(reverse != a[i]) return 0;
                       
                   }
                   return 1;
