@@ -44,7 +44,9 @@ class Solution
         long end = m-1;
         while(end<n){
             if( a.get((int)end) - a.get((int)start) < ans )
+            {
             ans = a.get((int)end) - a.get((int)start);
+            }
             start++;
             end++;
         }
