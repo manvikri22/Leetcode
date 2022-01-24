@@ -45,13 +45,27 @@ class Solution{
         {
             if(arr[l]<arr[r])
             {
-                high1 = Math.max(high1,arr[l]);
-                total = total + high1 - arr[l++];
+                if(arr[l]>high1)
+                {
+                    high1 = arr[l];
+                }
+                else
+                {
+                    total += high1 - arr[l];
+                }
+                l++;
             }
             else
             {
-                high2 = Math.max(high2,arr[r]);
-                total = total + high2 - arr[r--];
+                if(arr[r]>high2)
+                {
+                    high2 = arr[r];
+                }
+                else
+                {
+                    total += high2 - arr[r];
+                }
+                r--;
             }
         }
         return total;
