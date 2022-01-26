@@ -20,22 +20,6 @@ class Solution {
             else 
                 i++;
         }
-        
-        
-        
-        /**while(l<=h)
-        {
-            int mid = (l + (h-l)/2);
-            if(matrix[mid/m][mid%m]==target) return true;
-            if(matrix[mid/m][mid%m]<target) 
-            {
-                l = mid+1;
-            }
-            else
-            {
-                h = mid-1;
-            }
-        }**/
         return false;
     }
 }
