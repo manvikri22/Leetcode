@@ -69,13 +69,13 @@ class Solution
 	   int count = 1;
 	   int maxcount =1;
 	   Arrays.sort(arr);
-	   for(int i =1;i<N;i++)
+	   for(int i =0;i<N-1;i++)
 	   {
-	       if(arr[i] == arr[i-1]+1)
+	       if(arr[i+1] == arr[i]+1)
 	       {
 	           count++;
 	       }
-	       else if(arr[i] == arr[i-1])
+	       else if(arr[i] == arr[i+1])
 	        {
 	            continue;
 	        }
