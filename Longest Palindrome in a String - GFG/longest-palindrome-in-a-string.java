@@ -44,7 +44,7 @@ class Solution{
             right++;
         }
         
-        int size=right-left-1;
+        int size=right-left+1;
         
         if(size>max){
             str=S.substring(left+1,right);
