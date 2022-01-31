@@ -20,7 +20,7 @@ class Solution {
             right++;
         }
         
-        int size = right - left - 1;
+        int size = right - left + 1;
          if(size>max)
          {
              str = s.substring(left+1, right);
