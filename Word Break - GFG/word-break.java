@@ -35,11 +35,6 @@ class Sol
     
    public static int wordBreak(String A, ArrayList<String> B )
    {
-       return sol(B,A);
-       
-   }
-   static int sol(ArrayList<String> B,String A)
-   {
        int count=0;
        if(A.length()==0)
            count++;
@@ -47,9 +42,11 @@ class Sol
        {
            int temp=0;
            if(B.contains(A.substring(0,k)))
-             temp+=sol(B,A.substring(k));
+             temp+=wordBreak(A.substring(k),B);
            count+=temp;  
        }       
          return count;
+       
    }
+   
 }
