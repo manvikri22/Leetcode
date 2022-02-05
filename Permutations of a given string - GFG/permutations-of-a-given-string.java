@@ -29,24 +29,33 @@ class GFG
 class Solution {
     ArrayList<String> ans = new ArrayList<>();
     
-    void solve(String str, String a)
+    void solve(String s, int l , int r)
     {
-        if(str.length()==0)
+        if(l==r)
         {
-            ans.add(a);
+            ans.add(s);
             return;
         }
-        for(int i =0;i<str.length();i++)
+        for(int i =l;i<=r;i++)
         {
-            char ch = str.charAt(i);
-            String left = str.substring(0,i);
-            String right = str.substring(i+1);
-            solve(left+right, a+ch);
+            s = swap(s,l,i);
+            solve(s, l+1, r);
+            s = swap(s,l,i);
+            
         }
+    }
+    String swap(String s, int l , int r)
+    {
+        char ch [] = s.toCharArray();
+        char temp = ch[l];
+        ch[l] = ch[r];
+        ch[r] = temp;
+        return String.valueOf(ch);
     }
     public List<String> find_permutation(String S) {
         // Code here
-        solve(S,"");
+        
+        solve(S,0,S.length()-1);
         Collections.sort(ans);
         return ans;
     }
