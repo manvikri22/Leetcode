@@ -1,5 +1,5 @@
 # Edit Distance
-## Medium 
+##  Medium 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Given two strings <strong>s</strong>&nbsp;and <strong>t. </strong>Return the minimum number of operations required to convert <strong>s&nbsp;</strong>to <strong>t</strong>.<br>
 The possible operations are permitted:</span></p>
