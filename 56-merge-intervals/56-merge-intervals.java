@@ -5,7 +5,7 @@ class Solution {
         {
             return intervals;
         }
-        Arrays.sort(intervals,(arr1,arr2) -> Integer.compare(arr1[0],arr2[0]));
+        Arrays.sort(intervals,(arr1,arr2) -> arr1[0]-arr2[0]);
         List<int[]> output = new ArrayList<>();
         int[] cur;
         cur = intervals[0];
