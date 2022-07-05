@@ -15,21 +15,15 @@
  */
 class Solution {
     public TreeNode bstFromPreorder(int[] preorder) {
-        return helper(preorder, 0, preorder.length - 1);   
+        return helper(preorder, Integer.MAX_VALUE, new int[]{0});   
     }
     
-    private TreeNode helper(int[] preorder, int start, int end) {
-        if(start > end) return null;
+    private TreeNode helper(int[] A, int bound, int[] i) {
+        if(i[0]==A.length || A[i[0]]>bound) return null;
         
-        TreeNode node = new TreeNode(preorder[start]);
-        int i;
-        for(i=start;i<=end;i++) {
-        if(preorder[i] > node.val)
-            break;
-        }
-        
-        node.left = helper(preorder, start+1, i-1);
-        node.right = helper(preorder, i, end);
+        TreeNode node = new TreeNode(A[i[0]++]);
+        node.left = helper(A,node.val, i);
+        node.right = helper(A,bound, i);
         return node; 
     
     }
