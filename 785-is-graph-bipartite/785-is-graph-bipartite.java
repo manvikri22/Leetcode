@@ -1,45 +1,28 @@
 class Solution {
-    public boolean isBipartite(int[][] g) {
-        int[] colors = new int[g.length];
-        for (int i = 0; i < g.length; i++)
-            if (colors[i] == 0) {
-                Queue<Integer> q = new LinkedList<>();
-                q.add(i);
-                colors[i] = 1;
-                while (!q.isEmpty()) {
-                    Integer node = q.poll();
-                    for (int adjacent : g[node])
-                        if (colors[adjacent] == colors[node])
-                            return false;
-                        else if (colors[adjacent] == 0) {
-                            q.add(adjacent);
-                            colors[adjacent] = -colors[node];
-                        }
-                }
-            }
-        return true;
-    }
-   /** public boolean check(int[][] adj,int node, int[] color)
-    {
-        Queue<Integer> q = new LinkedList<>();
-        q.add(node);
-        color[node]=1;
-        while(!q.isEmpty())
-        {
-            Integer nde = q.poll();
-                for(int it: adj[nde] )
-                {
-                    if(color[it]==-1)
-                    {
-                        color[it] = 1- color[nde];
-                        q.add(it);
-                    }
-                    else if(color[it]==color[nde])
-                    {
-                        return false;
-                    }
-                }
+   public boolean isBipartite(int[][] graph) {
+
+   int color[]=new int[graph.length];//for an unvisted graph-0
+    //coloring graphs 1& -1 alternatively
+    
+    for(int i=0; i<graph.length; i++){
+        if(color[i]==0){
+            if(!dfs(graph,color,i,1))
+                return false;
         }
-        return true;
-    **/
+        
+    }
+    return true;
+}   
+    public boolean dfs(int[][] graph,int color[], int i, int colors ){
+        if(color[i]!=0)
+            return color[i]==colors;
+    
+    color[i]=colors;
+    
+    for(int e: graph[i]){
+        if(!dfs(graph,color,e,-colors))
+            return false;
+    }
+  return true;
+}
 }
