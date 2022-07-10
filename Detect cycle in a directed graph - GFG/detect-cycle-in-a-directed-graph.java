@@ -35,7 +35,7 @@ class Solution {
     public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
         // code here
         int vis[] = new int[V];
-        int dfsvis[] = new int[V];
+        int dfsvis[] = new int[V-1];
         
         for(int i =0;i<V;i++)
         {
