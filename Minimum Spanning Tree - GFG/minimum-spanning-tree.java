@@ -48,57 +48,23 @@ class DriverClass
 // User function Template for Java
 class Solution
 {
-    static class Pair implements Comparable<Pair>
-    {
-        int v;
-        int wt;
-        
-        Pair(int v,int wt)
-        {
-            this.v=v;
-            this.wt=wt;
-        }
-        
-        public int compareTo(Pair p)
-        {
-            return this.wt-p.wt;
-        }
-    }
-    
     //Function to find sum of weights of edges of the Minimum Spanning Tree.
     static int spanningTree(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj) 
     {
-        PriorityQueue<Pair> pq=new PriorityQueue();
-        boolean[] visited=new boolean[V];
-        pq.add(new Pair(0,0));
+        boolean [] v = new boolean [V];
+        PriorityQueue <ArrayList<Integer>> q= new PriorityQueue <ArrayList<Integer>>((a,b)-> (a.get(1)-b.get(1) ) );
         int ans=0;
-        
-        while(!pq.isEmpty())
-        {
-            Pair curr=pq.remove();
-            
-            int u=curr.v;
-            if(visited[u])
-                continue;
-            
-            ans+=curr.wt;
-            visited[u]=true;
-            
-            ArrayList<ArrayList<Integer>> neighbours=adj.get(u);
-            
-            for(ArrayList<Integer> list : neighbours)
-            {
-                int vertex=list.get(0);
-                int weight=list.get(1);
-                
-                if(!visited[vertex])
-                {
-                    pq.add(new Pair(vertex,weight));
-                }
+        q.add(new ArrayList<Integer>(Arrays.asList(0,0)));
+        while(q.size()!=0 ){
+            ArrayList<Integer> u = q.poll();
+            if(v[u.get(0)]) continue;
+            v[u.get(0)]= true;
+            ans=ans+u.get(1);
+            for(ArrayList <Integer>k: adj.get(u.get(0))){
+                q.add(k);
             }
-            
         }
-        
-        return ans;
+        return ans ;
     }
+
 }
