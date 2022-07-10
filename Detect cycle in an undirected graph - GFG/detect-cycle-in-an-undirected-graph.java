@@ -32,56 +32,42 @@ class GFG {
 
 
 class Solution {
-    // Function to detect cycle in an undirected graph.
-    public boolean isCycle(int v, ArrayList<ArrayList<Integer>> adj) {
-        // Code here
-        boolean vis[] = new boolean[v];
-        Arrays.fill(vis,false);
-        
-        for(int i =0;i<v;i++)
-        {
-            if(vis[i]==false)
-            {
-                if(check(adj,vis,i)==true)
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    public boolean check(ArrayList<ArrayList<Integer>> adj, boolean[]vis, int i)
-    {
-        Queue<node> q = new LinkedList<>();
-        q.add(new node(i,-1));
-        vis[i]= true;
-        
-        while(!q.isEmpty())
-        {
-            int nde = q.peek().first;
-            int par = q.peek().second;
-            
-            q.remove();
-            for(Integer it : adj.get(nde))
-            {
-                if(vis[it]==false)
-                {
-                    q.add(new node(it,nde));
-                    vis[it]=true;
-                }
-                else if(par !=it)
-                return true;
-            }
-        }
-        return false;
-    }
-    
-}
-class node{
-    int first;
-    int second;
-    public node(int first, int second)
-    {
-        this.first = first;
-        this.second = second;
-    }
+  // Function to detect cycle in an undirected graph.
+   
+   public boolean check(int node,int par,boolean vis[],ArrayList<ArrayList<Integer>>adj)
+   {
+       vis[node]=true;
+       
+       for(Integer it:adj.get(node))
+       {
+           if(vis[it]==false)
+           {
+               if(check(it,node,vis,adj)==true)
+               {
+                   return true;
+               }
+           }
+           else if(it!=par && vis[it]==true)
+           {
+               return true;
+           }
+       }
+       return false;
+   }
+   public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
+      // Code here
+      boolean vis[]=new boolean[V+1];
+      Arrays.fill(vis,false);
+      for(int i=0;i<V;i++)
+      {
+          if(vis[i]==false)
+          {
+              if(check(i,-1,vis,adj))
+              {
+                  return true;
+              }
+          }
+      }
+      return false;
+  }
 }
