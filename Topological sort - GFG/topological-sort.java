@@ -63,36 +63,43 @@ class Solution
     static int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj) 
     {
         // add your code here
-        int [] vis = new int[V];
-        Stack<Integer> st = new Stack<Integer>();
+        int [] topo = new int[V];
+        int indegree[] = new int[V];
         
         for(int i =0;i<V;i++)
         {
-            if(vis[i]==0)
+            for(Integer it: adj.get(i))
             {
-                findts(adj,vis,i,st);
+                indegree[it]++;
             }
         }
         
-        int topo[] = new int[V];
-        int ind =0;
-        while(!st.isEmpty())
+        Queue<Integer> q = new LinkedList<>();
+        
+        for(int i =0;i<V;i++)
         {
-            topo[ind++] = st.pop();
+            if(indegree[i]==0)
+            {
+                q.add(i);
+            }
+        }
+        
+        int ind =0;
+        while(!q.isEmpty())
+        {
+            Integer node = q.poll();
+            topo[ind++]= node;
+            
+            for(Integer it: adj.get(node))
+            {
+                indegree[it]--;
+                if(indegree[it]==0)
+                {
+                    q.add(it);
+                }
+            }
         }
         return topo;
     }
     
-    static void findts(ArrayList<ArrayList<Integer>> adj,int[] vis, int i , Stack<Integer> st)
-    {
-        vis[i]=1;
-        for(int it : adj.get(i))
-        {
-            if(vis[it]==0)
-            {
-                findts(adj,vis,it,st);
-            }
-        }
-        st.push(i);
-    }
 }
